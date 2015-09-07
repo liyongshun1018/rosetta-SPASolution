@@ -2,14 +2,14 @@
 
 
 {%block name="pagelet_center"%}
-1111111
+22222
 
 <link rel="import" type="text/html" href="/elements/r-speedtable.html">
-<r-speedtable title="直达号垂类" product="670" token="L1CL1F0K9DPPFU"></r-speedtable>
+<r-speedtable title="轻工厂" product="675" token="KJL41F2UQ2U1X9"></r-speedtable>
 
 <section class="box clearfix" id="content">
-    <a href="/page/test">
-        轻工厂数据
+    <a href="/page/index">
+        直达号数据
     </a>
 </section>
 {%/block%}
