@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>Smarty TEST</title>
     {%require name='static/js/jquery_2.1.4.js' %}
-    {%require name='static/js/LazyLoad.js' %}
+    {%require name='static/js/lazyload.js' %}
     {%require name='static/js/page.js' %}
     {%require name='static/js/BigPipe.js' %}
     {%require name='components/rosetta/Rosetta.js' %}
