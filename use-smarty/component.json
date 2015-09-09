@@ -1,9 +1,0 @@
-{
-  "protocol": "github",
-  "github": {
-    "author": "fis-components"
-  },
-  "dependencies": [
-    "github:fis-components/rosetta@^1.0.2"
-  ]
-}

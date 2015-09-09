@@ -7,7 +7,7 @@
     {%require name='static/js/lazyload.js' %}
     {%require name='static/js/page.js' %}
     {%require name='static/js/BigPipe.js' %}
-    {%require name='components/rosetta/Rosetta.js' %}
+    {%require name='static/js/rosetta/Rosetta.js' %}
 {%/head%}
 
 {%body%}

@@ -30,10 +30,10 @@ fis.match('map.json', {
     release: '/config/$0'
 });
 
-fis.match('/components/rosetta/Rosetta.js', {
+fis.match('*/Rosetta.js', {
     isMod: false,
     standard: false
-})
+});
 
 fis.match('/widget/{*,**/*}.js', {
     isMod: true,
