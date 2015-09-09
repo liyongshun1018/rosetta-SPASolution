@@ -1,0 +1,144 @@
+<element name="r-speedtable">
+    <style type="text/css">
+        :host .pure-table tr:nth-child(odd) td {
+            background-color: #f2f2f2;
+        }
+        :host .tr {
+            text-align: right;
+        }
+    </style>
+    <template>
+        <h3 class="marketing-header">{title}</h3>
+        <ul class="">
+            {
+                (data || []).map(function(list, index) {
+                    var result = [];
+                    var data = list.data;
+
+                    return (
+                        <li>
+                            <h4>{list.name}</h4>
+                            <table class="pure-table pure-table-bordered">
+                                {(function() {
+                                    var re = []
+                                    re.push(
+                                    <thead>
+                                        <tr>
+                                            <th>监控项</th>
+                                            <th>本周（ms）</th>
+                                            <th>上周（ms）</th>
+                                            <th>两周平均采样数（条）</th>
+                                            <th>变化率</th>
+                                        </tr>
+                                    </thead>
+                                    );
+
+                                    for (var item in data) {
+                                        var value = data[item];
+                                        var changeText = value.change;
+
+                                        if(changeText > 0) {
+                                            changeText = '↑' + changeText;
+                                        } else if(changeText > 0) {
+                                            changeText = '↓' + changeText;
+                                        }
+
+                                        re.push(
+                                            <tr>
+                                                <td>{value.item}</td>
+                                                <td>{value.avg}</td>
+                                                <td>{value.preAvg}</td>
+                                                <td>{value.sampleAvg}</td>
+                                                <td class="tr">{changeText}%</td>
+                                            </tr>
+                                        );
+                                    }
+
+                                    return re;
+                                })()}
+                            </table>
+                        </li>
+                    )
+                })
+            }
+        </ul>
+    </template>
+    <script type="text/javascript">
+        Rosetta({
+            is: 'r-speedtable',
+            properties: {
+                title: String,
+                product: String,
+                token: String,
+                data: Array
+            },
+            configURL: 'http://dp.baidu.com/openapi/config',
+            reportDataWeekURL: 'http://dp.baidu.com/openapi/speed/reportDataWeek',
+            ready: function() {},
+            attached: function() {
+                var that = this;
+                that.getData();
+            },
+            getData: function() {
+                var self = this;
+                var rowList = this.data || [];
+                var length = 0;
+                var readyL = 0;
+
+                $.ajax({
+                    url: self.configURL,
+                    type: 'GET',
+                    dataType: 'jsonp',
+                    data: {
+                        product: self.product,
+                        token: self.token
+                    },
+                    success: function(r) {
+                        var pageList = r.data || [];
+                        length = pageList.length;
+
+                        pageList.map(function(item, index) {
+                            var id = item.pageId;
+                            var name = item.page_name;
+                            var pageType = item.pageType;
+                            (function(id, name, pageType) {
+                                $.ajax({
+                                    url: self.reportDataWeekURL,
+                                    type: 'GET',
+                                    dataType: 'jsonp',
+                                    data: {
+                                        product: self.product,
+                                        token: self.token,
+                                        page: id,
+                                        perf: 'render',
+                                        pageType: pageType,
+                                        token: self.token
+                                    },
+                                    success: function(result) {
+                                        rowList.push({
+                                            name: name,
+                                            data: result.data
+                                        });
+
+                                        readyL++;
+                                        if (readyL == length) {
+                                            self.update({
+                                                data: rowList
+                                            });
+                                        }
+                                    },
+                                    error: function() {
+
+                                    }
+                                });
+                            })(id, name, pageType);
+                        });
+                    },
+                    error: function() {
+
+                    }
+                });
+            }
+        });
+    </script>
+</element>
