@@ -3,7 +3,7 @@
 
 fis.match('*', {
     useHash: false, // md5 都关掉
-    release: '/static/$0'
+    release: '/$0'
 });
 
 fis.match('*.php', {
@@ -47,14 +47,16 @@ fis
     })
 
     .match('/elements/r-*.html', {
-        rExt: '.js'
+        rExt: '.js',
+        packTo: '/static/aio.js'
     })
     .match('/elements/*.*', {
         release: '/static/$0'
     })
 
     .match('/components/**/r-*.html', {
-        rExt: '.js'
+        rExt: '.js',
+        packTo: '/static/aio.js'
     })
 
     .match('/components/(**/*.*)', {
@@ -64,22 +66,22 @@ fis
 
     .match('*.{tpl,html,js}', {
       preprocessor: fis.plugin('rosetta-import')
-    })
-
-    .match('::packager', {
-        postpackager: fis.plugin('rosetta', {
-            allInOne: false,
-            left_delimiter: '{%',
-            right_delimiter: '%}'
-        })
     });
+
+    // .match('::packager', {
+    //     postpackager: fis.plugin('rosetta', {
+    //         allInOne: false,
+    //         left_delimiter: '{%',
+    //         right_delimiter: '%}'
+    //     })
+    // });
 
 // 在 dev 环境下关闭文件 md5 hash
 fis
     .media('dev')
     .match('*.{css,js,html}', {
         useHash: false
-    })
+    });
     // .set('deploy', {
     //   receiver: 'http://dbl-dev-rd22.vm.baidu.com:8343/receiver',
     //   from: '/',

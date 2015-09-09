@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-{%html framework="static/mod.js"%}
+{%html%}
 <head>
     <meta charset="UTF-8">
     <title>Smarty TEST</title>
@@ -12,10 +12,12 @@
         {%block name="pagelet_center"%}{%/block%}
     {%/widget_block%}
 
-    <script type="text/javascript" src="static/js/jquery_2.1.4.js" data-framework></script>
-    <script type="text/javascript" src="static/js/BigPipe.js" data-framework></script>
-    <script type="text/javascript" src="static/js/page.js" data-framework></script>
-    <script type="text/javascript" src="components/rosetta/Rosetta.js" data-framework></script>
+    <script type="text/javascript" src="/static/mod.js" data-framework></script>
+    <script type="text/javascript" src="/static/js/jquery_2.1.4.js" data-framework></script>
+    <script type="text/javascript" src="/static/js/BigPipe.js" data-framework></script>
+    <script type="text/javascript" src="/static/js/page.js" data-framework></script>
+    <script type="text/javascript" src="/components/rosetta/Rosetta.js" data-framework></script>
+
     <script type="text/javascript">
         appPage.start({
             containerId: 'pager',
