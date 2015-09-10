@@ -1,5 +1,7 @@
 
 fis.require('smarty')(fis);
+fis.set('namespace', 'common');
+
 
 // node_modules 默认被添加到了 ignore 列表中，所以不做处理也不会被发布
 
@@ -18,12 +20,12 @@ fis.match('/smarty/{*,**/*}', {
 });
 
 fis.match('*.tpl', {
-    release: '/template/common/$0'
+    release: '/template/$0'
 });
 
 fis.match('/(widget/{*,**/*}.tpl)', {
     useMap: true,
-    url: '/template/common/$1' // 这个比较重要
+    url: '$1' // 这个比较重要
 });
 
 fis.match('map.json', {
@@ -48,6 +50,10 @@ fis
         parser: fis.plugin('rosetta', {
             compileUsage: false
         })
+    })
+
+    .match('*.tpl', {
+        release: '/template/$0'
     })
 
     .match('/elements/r-*.html', {
@@ -78,7 +84,15 @@ fis
             fis.plugin('rosetta-import'),
             fis.plugin('extlang')
         ]
-    });
+    })
+
+    // .match('::packager', {
+    //     postpackager: fis.plugin('rosetta', {
+    //         allInOne: false,
+    //         left_delimiter: '{%',
+    //         right_delimiter: '%}'
+    //     })
+    // });
 
 // 在 dev 环境下关闭文件 md5 hash
 fis
