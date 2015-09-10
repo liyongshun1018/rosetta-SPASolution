@@ -10,10 +10,6 @@ fis.match('*', {
     useHash: false // md5 都关掉
 });
 
-fis.match('*.json', {
-    release: '$0' // md5 都关掉
-});
-
 fis.match('*.php', {
     release: '$0'
 });
@@ -23,8 +19,7 @@ fis.match('/smarty/{*,**/*}', {
 });
 
 fis.match('/(widget/{*,**/*}.tpl)', {
-    useMap: true,
-    url: '$1' // 这个比较重要
+    useMap: true
 });
 
 fis.match('map.json', {
