@@ -18,16 +18,16 @@
 
 
     {%script%}
-    appPage.start({
-        containerId: 'pager',
-        pagelets: 'pager',
-        validate: /^[\w\W]*/,
-        cache: true
-    });
+        appPage.start({
+            containerId: 'pager',
+            pagelets: 'pager',
+            validate: /^[\w\W]*/,
+            cache: true
+        });
 
-    appPage.on('onpagerendercomplete', function(e) {
-        Rosetta.render();
-    });
+        appPage.on('onpagerendercomplete', function(e) {
+            Rosetta.render();
+        });
     {%/script%}
 {%/body%}
 {%/html%}
