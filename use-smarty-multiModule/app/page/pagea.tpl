@@ -1,3 +1,4 @@
+{%extends file="common/page/layout.tpl"%}
 
 
 {%block name="pagelet_center"%}

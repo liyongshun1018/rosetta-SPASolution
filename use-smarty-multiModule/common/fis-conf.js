@@ -7,8 +7,11 @@ fis.set('namespace', 'common');
 
 
 fis.match('*', {
-    useHash: false, // md5 都关掉
-    release: '/$0'
+    useHash: false // md5 都关掉
+});
+
+fis.match('*.json', {
+    release: '$0' // md5 都关掉
 });
 
 fis.match('*.php', {
@@ -17,10 +20,6 @@ fis.match('*.php', {
 
 fis.match('/smarty/{*,**/*}', {
     release: '$0'
-});
-
-fis.match('*.tpl', {
-    release: '/template/$0'
 });
 
 fis.match('/(widget/{*,**/*}.tpl)', {
@@ -52,9 +51,6 @@ fis
         })
     })
 
-    .match('*.tpl', {
-        release: '/template/$0'
-    })
 
     .match('/elements/r-*.html', {
         rExt: '.js',

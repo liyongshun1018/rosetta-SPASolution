@@ -1,13 +1,13 @@
 <!DOCTYPE html>
-{%html framework="static/mod.js" mode="noscript"%}
+{%html framework="common:static/mod.js" mode="noscript"%}
 {%head%}
     <meta charset="UTF-8">
     <title>Smarty TEST</title>
-    {%require name='static/js/jquery_2.1.4.js' %}
-    {%require name='static/js/lazyload.js' %}
-    {%require name='static/js/page.js' %}
-    {%require name='static/js/BigPipe.js' %}
-    {%require name='static/js/rosetta/Rosetta.js' %}
+    {%require name='common:static/js/jquery_2.1.4.js' %}
+    {%require name='common:static/js/lazyload.js' %}
+    {%require name='common:static/js/page.js' %}
+    {%require name='common:static/js/BigPipe.js' %}
+    {%require name='common:static/js/rosetta/Rosetta.js' %}
 {%/head%}
 
 {%body%}
