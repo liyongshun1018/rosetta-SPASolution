@@ -1,4 +1,8 @@
+
+fis.require('smarty')(fis);
+
 // node_modules 默认被添加到了 ignore 列表中，所以不做处理也不会被发布
+
 
 fis.match('*', {
     useHash: false, // md5 都关掉
@@ -14,16 +18,21 @@ fis.match('/smarty/{*,**/*}', {
 });
 
 fis.match('*.tpl', {
-    release: '/template/$0'
+    release: '/template/common/$0'
 });
 
 fis.match('/(widget/{*,**/*}.tpl)', {
     useMap: true,
-    url: '$1' // 这个比较重要
+    url: '/template/common/$1' // 这个比较重要
 });
 
 fis.match('map.json', {
     release: '/config/$0'
+});
+
+fis.match('*/Rosetta.js', {
+    isMod: false,
+    standard: false
 });
 
 fis.match('/widget/{*,**/*}.js', {
@@ -39,10 +48,6 @@ fis
         parser: fis.plugin('rosetta', {
             compileUsage: false
         })
-    })
-
-    .match('*.tpl', {
-        release: '/template/$0'
     })
 
     .match('/elements/r-*.html', {
@@ -65,15 +70,15 @@ fis
 
     .match('*.{tpl,html,js}', {
       preprocessor: fis.plugin('rosetta-import')
-    });
+    })
 
-    // .match('::packager', {
-    //     postpackager: fis.plugin('rosetta', {
-    //         allInOne: false,
-    //         left_delimiter: '{%',
-    //         right_delimiter: '%}'
-    //     })
-    // });
+    .match('*.tpl', {
+        useMap: true,
+        preprocessor: [
+            fis.plugin('rosetta-import'),
+            fis.plugin('extlang')
+        ]
+    });
 
 // 在 dev 环境下关闭文件 md5 hash
 fis
@@ -116,6 +121,8 @@ fis
 fis.match(/.*\.partial\.js$/, {
     isMod: false
 });
+
+
 
 fis.match('/plugin/test/{*,**/*}', {
     release: false
