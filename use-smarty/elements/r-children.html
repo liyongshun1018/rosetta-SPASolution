@@ -1,0 +1,27 @@
+<element name="r-children">
+    <style type="text/css">
+    :host {
+        /*css*/
+    }
+    </style>
+    <template>
+        <div onClick={onclick}>
+            clickme
+        </div>
+    </template>
+    <script type="text/javascript">
+    Rosetta({
+        is: 'r-children',
+        properties: {
+            onclick: {
+                type: Function,
+                value: function(){}
+            }
+        },
+        created: function() {},
+        attached: function() {},
+        attributeChanged: function() {},
+        detached: function() {}
+    });
+    </script>
+</element>

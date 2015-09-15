@@ -1,0 +1,27 @@
+<element name="r-parent">
+    <style type="text/css">
+    :host {
+        /*css*/
+    }
+    </style>
+    <template>
+        <link rel="import" type="text/html" href="./r-children.html">
+        <div>
+            parent
+            <r-children onclick={clear}></r-children>
+        </div>
+    </template>
+    <script type="text/javascript">
+    Rosetta({
+        is: 'r-parent',
+        properties: {},
+        created: function() {},
+        attached: function() {},
+        attributeChanged: function() {},
+        detached: function() {},
+        clear: function() {
+            alert('parent alert');
+        }
+    });
+    </script>
+</element>
