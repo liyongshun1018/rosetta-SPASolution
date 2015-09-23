@@ -8,8 +8,6 @@
         }
     </style>
     <template>
-        <link rel="import" type="text/html" href="./r-aaa.html">
-        <r-aaa></r-aaa>
         <h3 class="marketing-header">{title}</h3>
         <ul class="">
             {
@@ -83,7 +81,7 @@
             },
             getData: function() {
                 var self = this;
-                var rowList = this.data || [];
+                var rowList = [];
                 var length = 0;
                 var readyL = 0;
 
@@ -125,7 +123,7 @@
                                         readyL++;
                                         if (readyL == length) {
                                             self.update({
-                                                data: rowList
+                                                data: rowList.concat(self.data)
                                             });
                                         }
                                     },

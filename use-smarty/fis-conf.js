@@ -110,14 +110,14 @@ fis
 fis
     .media('production')
     // 压缩 js 通过 uglify
-    .match('*.js', {
-        optimizer: fis.plugin('uglify-js')
-    })
+    // .match('*.js', {
+    //     optimizer: fis.plugin('uglify-js')
+    // })
 
-    // 这里面也是 js
-    .match('/elements/*.html', {
-        optimizer: fis.plugin('uglify-js')
-    })
+    // // 这里面也是 js
+    // .match('/elements/*.html', {
+    //     optimizer: fis.plugin('uglify-js')
+    // })
 
     // 压缩 css
     .match('*.css', {

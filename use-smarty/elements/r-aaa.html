@@ -5,13 +5,75 @@
         }
     </style>
     <template>
-        依赖关系
+    111
+        <br/>
+        {
+            (function() {
+                if (!!a) {
+                    return (<div onClick={testClick}>{a}</div>)
+                }
+            })()
+        }
+
+        {
+            [1,2,3,4].map(function(item, index) {
+                return create('r-children', {
+                    ref: 1
+                });
+            })
+        }
+        <select onChange={changeSelect}>
+            <option>1</option>
+            <option>2</option>
+        </select>
+
+        <div onMouseEnter={testfunc.bind(window)}>
+            mouseEnter
+        </div>
+
     </template>
     <script type="text/javascript">
         Rosetta({
             is: 'r-aaa',
+
+            aaa: function() {
+                console.log('enter');
+            },
+
+            properties: {
+                a: {
+                    type: String,
+                    value: ''
+                },
+
+                testfunc: {
+                    type: Function,
+                    value: function(){
+                        alert(this);
+                    }
+                }
+            },
+            lalala: function() {
+                alert('lalala');
+            },
+            testClick: function(e) {
+                alert('clicked');
+                return false;
+            },
             attached: function() {
-                alert(111);
+                this.update({
+                    a: this.a
+                });
+                // this.destroy();
+                // this.update({
+                //     a: 1212
+                // });
+            },
+            changeSelect: function() {
+                alert(1);
+            },
+            attributeChanged: function() {
+                alert('changed');
             }
         });
     </script>
