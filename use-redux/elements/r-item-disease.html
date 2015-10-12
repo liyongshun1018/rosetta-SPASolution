@@ -1,0 +1,122 @@
+<element name="r-item-disease">
+    <style type="text/x-less">
+        @import "/static/css/lesshat.less";
+
+        :host {
+            .item {
+                .display(flex);
+                padding: 10px 10px;
+                text-decoration: none;
+                background-color: #fff;
+            }
+            .item-img {
+                width: 65px;
+                height: 65px;
+                img {
+                    width: 100%;
+                    height: 100%;
+                }
+            }
+            .item-detail {
+                .flex(1);
+                margin-left: 10px;
+            }
+            .detail-title {
+                color: #333;
+                font-size: 16px;
+                line-height: 24px;
+            }
+            .detail-info {
+                display: -webkit-box;
+                -webkit-line-clamp: 2;
+                -webkit-box-orient: vertical;
+                overflow: hidden;
+                font-size: 14px;
+                line-height: 20px;
+                color: #777;
+            }
+            .item-arrow {
+                width: 30px;
+                background-image: url(images/arrow-right.png);
+                background-size: 7px 12px;
+                background-repeat: no-repeat;
+                background-position: center;
+            }
+        }
+    </style>
+    <template>
+        <div ref="item-disease" class="item-disease">
+            <a href={item.link} class="item">
+                <div class="item-img">
+                    <img src={item.images} />
+                </div>
+                <div class="item-detail">
+                    <div class="detail-title">{item.name}</div>
+                    <div class="detail-info">
+                        {item.description}
+                    </div>
+                </div>
+                {(function () {
+                    if (enablearrow > 0) {
+                        return (
+                            <div class="item-arrow"></div>
+                        )
+                    }
+                })()}
+
+            </a>
+        </div>
+    </template>
+    <script type="text/javascript">
+        Rosetta({
+            is: 'r-item-disease',
+            properties: {
+                item: {
+                    type: Object,
+                    value: {}
+                },
+                enablearrow: {
+                    type: Boolean,
+                    value: true
+                }
+            },
+            attached: function () {
+
+            },
+
+            created: function () {
+
+            },
+
+            dettached: function () {
+
+            },
+
+            attributeChanged: function () {
+
+            },
+
+            hide: function () {
+            },
+
+            show: function () {
+            },
+
+            clear: function () {
+                this.update({
+                    item: {}
+                })
+            },
+
+            setData: function (data) {
+                this.update({
+                    item: data
+                });
+            },
+
+            getData: function () {
+                return this.item;
+            }
+        });
+    </script>
+</element>

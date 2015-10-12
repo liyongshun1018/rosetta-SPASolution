@@ -1,0 +1,77 @@
+<element name="r-list-disease">
+    <style type="text/x-less">
+        :host {
+            .r-item-disease {
+                &:not(:last-child) {
+                    border-bottom: 1px solid #ebebeb;
+                }
+            }
+        }
+    </style>
+    <template>
+        <div ref="static-list" class="static-list">
+            <link rel="import" href="../r-item-disease/r-item-disease.html" />
+            {(list || []).map(function(item, index){
+                return (
+                    <r-item-disease item={item} class="item-disease"></r-item-disease>
+                )
+            })}
+        </div>
+    </template>
+    <script type="text/javascript">
+        Rosetta({
+            is: 'r-list-disease',
+            properties: {
+                list: {
+                    type: Array,
+                    value: []
+                },
+            },
+            attached: function () {
+
+            },
+
+            created: function () {
+
+            },
+
+            dettached: function () {
+
+            },
+
+            attributeChanged: function () {
+
+            },
+
+            hide: function () {
+                this.$['static-list'][0].style.display = 'none';
+            },
+
+            show: function () {
+                this.$['static-list'][0].style.display = 'block';
+            },
+
+            clear: function () {
+                this.update({
+                    list: []
+                });
+            },
+
+            appendData: function (data) {
+                this.update({
+                    list: this.list.concat(data)
+                });
+            },
+
+            setData: function (data) {
+                this.update({
+                    list: data
+                });
+            },
+
+            getData: function () {
+                return this.list;
+            }
+        });
+    </script>
+</element>

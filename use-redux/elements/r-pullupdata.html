@@ -1,0 +1,108 @@
+<element name="r-pullupdata">
+    <style type="text/x-less">
+        :host {
+            .pullupdata {
+                text-align: center;
+                font-size: 13px;
+                color: #6b6b6b;
+                height: 56px;
+                line-height: 56px;
+            }
+            .pull-logo {
+                width: 19px;
+                height: 19px;
+                position: relative;
+                right: 4px;
+            }
+        }
+    </style>
+    <template>
+        <div ref="pullupdata" class="pullupdata">
+            {(function() {
+                if(logo === "1"){
+                    return (
+                        <img src="images/zhida-logo-gray.png" class="pull-logo" />
+                    )
+                }
+            })()}
+            {text}
+        </div>
+    </template>
+    <script type="text/javascript">
+        Rosetta({
+            is: 'r-pullupdata',
+            properties: {
+                text: {
+                    type: String,
+                    value: '正在加载中...'
+                },
+                logo: {
+                    type: String,
+                    value: 0
+                },
+                enable: {
+                    type: Boolean,
+                    value: true
+                }
+            },
+            attached: function () {
+                var me = this;
+                $(me.root).on('click', function (e) {
+                    console.log(1);
+                    if(me.enable === true) {
+                        $(me).trigger('pulled');
+                        me.startPullUp();
+                    }
+                });
+                // 各手机版本及浏览器的兼容情况
+                $(window).on('scroll', function() {
+                    // 滚动加载
+                    var hasScrollBottom = window.screen.availHeight + document.body.scrollTop >= document.body.scrollHeight;
+                    if (hasScrollBottom && me.enable === true) {
+                        $(me).trigger('pulled');
+                    }
+                });
+            },
+
+            created: function () {
+
+            },
+
+            dettached: function () {
+
+            },
+
+            attributeChanged: function () {
+
+            },
+
+            bind: function (name, callback) {
+                $(this).on(name, callback);
+            },
+
+            hide: function () {
+                this.root.style.display = 'none';
+            },
+
+            show: function () {
+                this.root.style.display = 'block';
+            },
+
+            clear: function () {
+                this.update({
+                    text: '正在加载中...',
+                });
+            },
+
+            setText: function (data) {
+                this.update({
+                    text: data.text
+                });
+            },
+
+            getText: function () {
+                return this.pullupdata;
+            }
+        });
+    </script>
+</element>
